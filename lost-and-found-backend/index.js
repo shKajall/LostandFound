@@ -6,27 +6,45 @@ import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import responseRoutes from "./routes/responses.js";
 import notificationRoutes from "./routes/notifications.js";
-import userRoutes from "./routes/users.js"; // <-- add this
+import userRoutes from "./routes/users.js";
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
+
+// FIXED CORS (important for deployment)
+app.use(
+  cors({
+    origin: "*", 
+    credentials: true
+  })
+);
+
 app.use("/uploads", express.static("uploads"));
 
+// Routes
 app.use("/api/posts", postRoutes);
 app.use("/api/responses", responseRoutes);
 app.use("/api/notifications", notificationRoutes);
-app.use("/api/users", userRoutes); // <-- add this
+app.use("/api/users", userRoutes);
 
+// Health Check
 app.get("/", (req, res) => {
   res.send("Backend running…");
 });
 
-mongoose.connect(process.env.MONGO_URI)
+// MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log("MongoDB error:", err));
 
-app.listen(5001, () => console.log("Server running on http://localhost:5001"));
+// Start Server (DEPLOYMENT SAFE)
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

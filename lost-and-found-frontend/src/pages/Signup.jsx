@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 export default function Signup() {
   const [fullName, setFullName] = useState("");
@@ -33,7 +33,7 @@ export default function Signup() {
     try {
       const username = fullName; // using fullName as username
 
-      const res = await fetch("http://localhost:5001/api/users/register", {
+      const res = await fetch("http://lostandfound-1-eyvw.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

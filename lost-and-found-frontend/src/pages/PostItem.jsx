@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 function PostItem() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function PostItem() {
   useEffect(() => {
     if (!loggedInEmail) return;
 
-    axios.get(`https://localhost:5001/api/users/${loggedInEmail}`)
+    axios.get(`https://lostandfound-1-eyvw.onrender.com/api/users/${loggedInEmail}`)
       .then((res) => {
         setUsername(res.data.user.username || loggedInEmail.split("@")[0]);
         setIsUsernameLocked(true);
@@ -42,7 +42,7 @@ function PostItem() {
 
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/posts/check-username/${value}`
+        `http://lostandfound-1-eyvw.onrender.com/api/posts/check-username/${value}`
       );
       if (res.data.exists) {
         setUsernameError("Username already taken");
@@ -62,7 +62,7 @@ function PostItem() {
 
     try {
       const res = await axios.put(
-        `http://localhost:5001/api/users/update-username/${loggedInEmail}`,
+        `http://lostandfound-1-eyvw.onrender.com/api/users/update-username/${loggedInEmail}`,
         { username }
       );
 
@@ -109,7 +109,7 @@ function PostItem() {
       formData.append("userEmail", loggedInEmail);
 
       const response = await axios.post(
-        "http://localhost:5001/api/posts",
+        "http://lostandfound-1-eyvw.onrender.com/api/posts",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

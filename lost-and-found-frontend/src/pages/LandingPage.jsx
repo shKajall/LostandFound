@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import LostImage from "../assets/lost.jpeg";
+import LostImage from "../assets/Lost.jpeg";
 import FoundImage from "../assets/found.jpeg";
 import SignupImage from "../assets/signup.jpg";
 import PostImage from "../assets/post.webp";
 import MatchImage from "../assets/match.jpeg";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 export default function LandingPage() {
   return (

@@ -13,7 +13,7 @@ export default function Notifications() {
   const fetchNotifications = async () => {
     if (!userEmail) return;
     try {
-      const res = await axios.get(`http://localhost:5001/api/notifications/${userEmail}`);
+      const res = await axios.get(`http://lostandfound-1-eyvw.onrender.com/api/notifications/${userEmail}`);
       setNotifications(res.data.notifications);
       setUnreadCount(res.data.notifications.filter((n) => !n.read).length);
     } catch (err) {
@@ -28,7 +28,7 @@ export default function Notifications() {
   // Mark notification as read
   const markAsRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/api/notifications/read/${id}`);
+      await axios.put(`http://lostandfound-1-eyvw.onrender.com/api/notifications/read/${id}`);
       fetchNotifications(); // refresh list
     } catch (err) {
       console.error("Failed to mark as read", err);

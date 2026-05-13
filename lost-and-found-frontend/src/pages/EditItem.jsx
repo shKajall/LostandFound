@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 export default function EditItem() {
   const { id } = useParams();
@@ -18,7 +18,7 @@ export default function EditItem() {
   const userEmail = loggedInUser?.email; // backend expects email
 
   useEffect(() => {
-  axios.get(`https://localhost:5001/api/posts/${id}`)
+  axios.get(`https://lostandfound-1-eyvw.onrender.com/api/posts/${id}`)
       .then((res) => {
         const post = res.data.post;
         setItemName(post.itemName);
@@ -47,7 +47,7 @@ export default function EditItem() {
     if (image) formData.append("image", image);
 
     try {
-      await axios.put(`https://localhost:5001/api/posts/post/${id}`, // match backend route
+      await axios.put(`https://lostandfound-1-eyvw.onrender.com/api/posts/post/${id}`, // match backend route
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

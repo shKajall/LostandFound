@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 
 function MyListings() {
@@ -22,7 +22,7 @@ function MyListings() {
     if (!userEmail) return;
 
     axios
-      .get(`http://localhost:5001/api/posts/user/${userEmail}`)
+      .get(`http://lostandfound-1-eyvw.onrender.com/api/posts/user/${userEmail}`)
       .then((res) => {
         setItems(res.data.posts || []);
         setLoading(false);
@@ -37,7 +37,7 @@ function MyListings() {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
 
     try {
-      const res = await axios.delete(`http://localhost:5001/api/posts/${id}`);
+      const res = await axios.delete(`http://lostandfound-1-eyvw.onrender.com/api/posts/${id}`);
       if (res.status === 200) {
         setItems(items.filter((item) => item._id !== id));
         alert("Item deleted!");

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 function Feed() {
   const [items, setItems] = useState([]);
@@ -19,7 +19,7 @@ function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-const response = await axios.get(`https://localhost:5001/api/posts/${id}`);
+const response = await axios.get(`https://lostandfound-1-eyvw.onrender.com/api/posts/${id}`);
         setItems(response.data.posts || []);
         setLoading(false);
       } catch (err) {
@@ -34,7 +34,7 @@ const response = await axios.get(`https://localhost:5001/api/posts/${id}`);
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
     try {
-  const response = await axios.delete(`https://localhost:5001/api/posts/${id}`);
+  const response = await axios.delete(`https://lostandfound-1-eyvw.onrender.com/api/posts/${id}`);
       if (response.status === 200) {
         setItems(items.filter((item) => item._id !== id));
       }

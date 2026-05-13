@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5001/api/users/login", {
+      const res = await fetch("http://lostandfound-1-eyvw.onrender.com/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

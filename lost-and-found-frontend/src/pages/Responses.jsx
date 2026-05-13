@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Logo from "../assets/Logo.jpeg";
+import Logo from "../assets/logo.jpeg";
 import { useLocation } from "react-router-dom";
 
 function Responses() {
@@ -17,7 +17,7 @@ function Responses() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/posts");
+        const res = await axios.get("http://lostandfound-1-eyvw.onrender.com/api/posts");
         setPosts(res.data.posts || []);
       } catch (err) {
         console.error("Error fetching posts:", err);
@@ -36,7 +36,7 @@ function Responses() {
   const fetchResponses = async (postId) => {
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/responses/post/${postId}/${user.email}`
+        `http://lostandfound-1-eyvw.onrender.com/api/responses/post/${postId}/${user.email}`
       );
 
       setResponses((prev) => ({
@@ -63,7 +63,7 @@ function Responses() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5001/api/responses",
+        "http://lostandfound-1-eyvw.onrender.com/api/responses",
         payload
       );
 
@@ -97,7 +97,7 @@ function Responses() {
 
     try {
       const res = await axios.delete(
-        `http://localhost:5001/api/responses/${responseId}/${user.email}`
+        `http://lostandfound-1-eyvw.onrender.com/api/responses/${responseId}/${user.email}`
       );
 
       if (res.data.success) {
